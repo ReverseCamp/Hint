@@ -1,0 +1,30 @@
+;https://learn.microsoft.com/zh-cn/cpp/intrinsics/umulh?view=msvc-170
+; COMMENT Flag of startswith a semicolon
+;
+_enable; Enables interrupts
+__fastfail; Immediately terminates the calling process with minimum overhead.
+__halt; Halts the microprocessor until an enabled interrupt, a nonmaskable interrupt (NMI), or a reset occurs
+__nop; Generates platform-specific machine code that performs no operation.
+__rdtsc; processor time stamp
+__rdtscp; Generates the rdtscp instruction, writes TSC_AUX[31:0] to memory, and returns the 64-bit Time Stamp Counter (TSC) result.
+__readcr0; safe mode, paging enable
+__readcr3; Page Dir Base Address
+__readcr8; Current IRQL Level
+__writecr0; safe mode, paging enable
+__writecr3; Page Dir Base Address
+__writecr8; Current IRQL Level
+__umulh; Return the high 64 bits of the product of two 64-bit unsigned integers.
+;
+;
+LOBYTE;low-order byte from 16-bit
+HIBYTE;high-order byte from 16-bit
+LOWORD;low-order word from 32-bit
+HIWORD;high-order word from 32-bit
+;
+;
+KeGetCurrentThread; gs:188h KTHREAD ptr
+;
+;
+; https://learn.microsoft.com/en-us/cpp/intrinsics/x64-amd64-intrinsics-list?view=msvc-170
+_m_prefetchw; CPU Cache
+_m_prefetch; CPU Cache
