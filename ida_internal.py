@@ -46,10 +46,13 @@ class hint_set():
         with open(name,'r') as f:
             for result in f:
                 # skip comments
-                if result.startswith(';'):
+                if result.startswith(';') or result == '':
                     continue
                 ks = result.split(';')
-                g_dict['function'][ks[0]] = ks[1]
+                try:
+                    g_dict['function'][ks[0]] = ks[1]
+                except:
+                    pass
 
 class ctype_t(IntEnum):
     cot_empty    = 0,

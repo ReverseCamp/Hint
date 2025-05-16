@@ -1,4 +1,9 @@
-;https://learn.microsoft.com/zh-cn/cpp/intrinsics/umulh?view=msvc-170
+; https://learn.microsoft.com/zh-cn/cpp/intrinsics/umulh?view=msvc-170
+; 
+; compiler intrinsics
+; 
+; for x86 and x64 arch
+;
 ; COMMENT Flag of startswith a semicolon
 ;
 _enable; Enables interrupts
@@ -20,11 +25,156 @@ LOBYTE;low-order byte from 16-bit
 HIBYTE;high-order byte from 16-bit
 LOWORD;low-order word from 32-bit
 HIWORD;high-order word from 32-bit
+LODWORD;low-order dword from 64-bit
+HIDWORD;high-order dword from 64-bit
+;
+; https://hex-rays.com/blog/igors-tip-of-the-week-67-decompiler-helpers
+; IDA  decompiler helpers
+; IDA support  Partial access macros
+; https://gist.github.com/Dliv3/d011325312292182a9674797761d2b41
+is_mul_ok; mul check that unsigned multiplication does not overflow
 ;
 ;
 KeGetCurrentThread; gs:188h KTHREAD ptr
+KeGetCurrentPrcb; gs:20h KPRCB ptr
+KeGetCurrentIrql; cr8 IRQL Level
+_InterlockedDecrement; lock dec decrement in atom
 ;
 ;
 ; https://learn.microsoft.com/en-us/cpp/intrinsics/x64-amd64-intrinsics-list?view=msvc-170
 _m_prefetchw; CPU Cache
 _m_prefetch; CPU Cache
+;
+;
+; https://github.com/MicrosoftDocs/cpp-docs/blob/main/docs/intrinsics/intrinsics-available-on-all-architectures.md
+_AddressOfReturnAddress; Returns the address of the memory location storing the current function's return address
+_BitScanForward; Finds the first set bit (LSB to MSB) and returns its position (nonzero if found)
+_BitScanReverse; Finds the last set bit (MSB to LSB) and returns its position (nonzero if found)
+_bittest; Returns the value of a specified bit in an integer (0 or 1)
+_bittestandcomplement; Tests a bit, complements it, and returns its original value
+_bittestandreset; Tests a bit, clears it (0), and returns its original value
+_bittestandset; Tests a bit, sets it (1), and returns its original value
+__code_seg; Specifies the code section for subsequent functions (compiler directive)
+__debugbreak; Generates a debugger breakpoint exception (int 3 on x86)
+_disable; Disables hardware interrupts (CLI instruction)
+_enable; Enables hardware interrupts (STI instruction)
+__fastfail; Immediately terminates the program with an exception (no cleanup)
+_InterlockedAnd; Atomic bitwise AND operation (returns original value)
+_InterlockedAnd16; 16-bit atomic bitwise AND (returns original value)
+_InterlockedAnd8; 8-bit atomic bitwise AND (returns original value)
+_interlockedbittestandreset; Atomic bit test-and-reset (returns original bit value)
+_interlockedbittestandset; Atomic bit test-and-set (returns original bit value)
+_InterlockedCompareExchange; Atomic compare-and-swap (returns original value)
+_InterlockedCompareExchange16; 16-bit atomic compare-and-swap
+_InterlockedCompareExchange8; 8-bit atomic compare-and-swap
+_InterlockedCompareExchangePointer; Atomic pointer compare-and-swap
+_InterlockedDecrement; Atomic decrement (returns decremented value)
+_InterlockedDecrement16; 16-bit atomic decrement
+_InterlockedExchange; Atomic exchange (returns original value)
+_InterlockedExchange16; 16-bit atomic swap
+_InterlockedExchange8; 8-bit atomic swap
+_InterlockedExchangeAdd; Atomic add (returns original value)
+_InterlockedExchangeAdd16; 16-bit atomic add
+_InterlockedExchangeAdd8; 8-bit atomic add
+_InterlockedExchangePointer; Atomic pointer exchange
+_InterlockedIncrement; Atomic increment (returns incremented value)
+_InterlockedIncrement16; 16-bit atomic increment
+_InterlockedOr; Atomic bitwise OR (returns original value)
+_InterlockedOr16; 16-bit atomic OR
+_InterlockedOr8; 8-bit atomic OR
+_InterlockedXor; Atomic bitwise XOR (returns original value)
+_InterlockedXor16; 16-bit atomic XOR
+_InterlockedXor8; 8-bit atomic XOR
+__nop; Inserts a processor NOP instruction (no operation)
+_ReadBarrier; Compiler memory barrier for read operations
+_ReadWriteBarrier; Full compiler memory barrier
+_ReturnAddress; Returns the return address of the current function
+_rotl16; Rotates 16-bit value left by specified bits
+_rotl8; Rotates 8-bit value left by specified bits
+_rotr16; Rotates 16-bit value right by specified bits
+_rotr8; Rotates 8-bit value right by specified bits
+_WriteBarrier; Compiler memory barrier for write operations
+abs; Returns absolute value of an integer
+_abs64; Returns absolute value of a 64-bit integer
+acos; Computes arccosine (radians)
+acosf; Single-precision arccosine
+acosl; Long double-precision arccosine
+_alloca; Allocates memory on the stack (returns pointer)
+asin; Computes arcsine (radians)
+asinf; Single-precision arcsine
+asinl; Long double-precision arcsine
+atan; Computes arctangent (radians)
+atan2; Computes arctangent of y/x (quadrant-aware)
+atan2f; Single-precision atan2
+atan2l; Long double-precision atan2
+atanf; Single-precision arctangent
+atanl; Long double-precision arctangent
+_byteswap_uint64; Reverses byte order of 64-bit integer
+_byteswap_ulong; Reverses byte order of 32-bit integer
+_byteswap_ushort; Reverses byte order of 16-bit integer
+ceil; Rounds up to nearest integer (double)
+ceilf; Single-precision ceil
+ceill; Long double-precision ceil
+cos; Computes cosine (radians)
+cosf; Single-precision cosine
+cosh; Computes hyperbolic cosine
+coshf; Single-precision hyperbolic cosine
+coshl; Long double-precision hyperbolic cosine
+cosl; Long double-precision cosine
+exp; Computes e raised to given power
+expf; Single-precision exponential
+expl; Long double-precision exponential
+fabs; Returns absolute value of floating-point number
+fabsf; Single-precision absolute value
+floor; Rounds down to nearest integer (double)
+floorf; Single-precision floor
+floorl; Long double-precision floor
+fmod; Computes floating-point remainder
+fmodf; Single-precision fmod
+fmodl; Long double-precision fmod
+labs; Returns absolute value of long integer
+llabs; Returns absolute value of long long integer
+log; Computes natural logarithm
+log10; Computes base-10 logarithm
+log10f; Single-precision log10
+log10l; Long double-precision log10
+logf; Single-precision natural log
+logl; Long double-precision natural log
+_lrotl; Rotates 32-bit integer left
+_lrotr; Rotates 32-bit integer right
+memcmp; Compares two memory blocks (returns <0, 0, or >0)
+memcpy; Copies memory block (returns destination)
+memset; Fills memory with byte (returns destination)
+pow; Computes x raised to power y
+powf; Single-precision power
+powl; Long double-precision power
+_rotl; Rotates 32-bit integer left
+_rotl64; Rotates 64-bit integer left
+_rotr; Rotates 32-bit integer right
+_rotr64; Rotates 64-bit integer right
+sin; Computes sine (radians)
+sinf; Single-precision sine
+sinh; Computes hyperbolic sine
+sinhf; Single-precision hyperbolic sine
+sinhl; Long double-precision hyperbolic sine
+sinl; Long double-precision sine
+sqrt; Computes square root (double)
+sqrtf; Single-precision square root
+sqrtl; Long double-precision square root
+strcat; Appends string (returns destination)
+strcmp; Compares two strings (returns <0, 0, or >0)
+strcpy; Copies string (returns destination)
+strlen; Returns string length (excluding null)
+_strset; Fills string with character (returns original pointer)
+strset; Fills string with character (returns destination)
+tan; Computes tangent (radians)
+tanf; Single-precision tangent
+tanh; Computes hyperbolic tangent
+tanhf; Single-precision hyperbolic tangent
+tanhl; Long double-precision hyperbolic tangent
+tanl; Long double-precision tangent
+wcscat; Appends wide string (returns destination)
+wcscmp; Compares two wide strings (returns <0, 0, or >0)
+wcscpy; Copies wide string (returns destination)
+wcslen; Returns wide string length (excluding null)
+_wcsset; Fills wide string with character (returns original)
