@@ -178,3 +178,24 @@ wcscmp; Compares two wide strings (returns <0, 0, or >0)
 wcscpy; Copies wide string (returns destination)
 wcslen; Returns wide string length (excluding null)
 _wcsset; Fills wide string with character (returns original)
+;
+;
+; https://packagewjx.github.io/2018/11/12/sse-note/
+; Streaming SIMD Extension  x86 SIMD instruction set extensibility
+; SSE Instrument Set  XMM0-XXM7  operation on 128bit data
+_mm_loadu_si128; Loads 128-bit value
+_mm_max_epu8; compare the unsigned 8bits data between a and b and repeat 16 times, return max
+_mm_min_epi8; compare the signed 8bits data between a and b and repeat 16 times, return max
+_mm_setzero_si128; set 128bits data zero
+_mm_subs_epu8; sub 8bits data between a and b
+_mm_adds_epi8; add 8bits data between a and b
+_mm_unpackhi_epi64; high 64bits data exchange and discard low 64bits
+_mm_srli_si128;  psrldq xmm0 | logic operation move right imm step
+_mm_cvsi128_si32; set para a low 32bits to 32bit integer
+_mm_xor_si128; bit xor between a and b | r = a ^ b
+_mm_or_si128; r = a | b
+_mm_and_si128; r = a & b
+_mm_cmpgt_epi8; compare the signed 8bits data between a and b and repeat 16 times, return greater than
+_mm_cvtsi128_si32; movdqa xmm0, xmm6 | convert 128bit data into XMM register or get it from
+_mm_cvtsi128_si64; retrieve 64bit integer
+_mm_extract_epi16; pextrw rd8,xmm6 | get 8 bit integer
